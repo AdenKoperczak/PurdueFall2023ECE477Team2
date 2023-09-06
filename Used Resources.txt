@@ -1,0 +1,43 @@
+
+GPIO
+    GPIOC 
+        Pins Used: 0-6, 8-13 (HUB75)
+        Cannot use free pins in "output" mode (value will be overridden)
+
+Timers
+    TIM 3 
+        PRE = 0; (HUB75)
+        ARR = 0xff; (HUB75)
+        Channel 1 (CC1) used (HUB75)
+
+DMA
+    DMA1_CHANNEL4 (HUB75)
+
+SRAM
+    HUB75
+        (#Columns + #ExtraColumns) * (#Rows / #RowsPerCycle) * #BytesPerPixel
+        (64 + 3) * (32 / 2)  * 2  = 2144 bytes
+
+Possible further needed
+    Game tick:
+        Timer to trigger game tick.
+    WS2812B lights: 
+        1 GPIO line
+        Timer for PWM/DMA refresh (at least).
+        DMA
+    Keypad (maybe in game tick.):
+        8 GPIO lines
+        Timer for refreshing (could probably use other channel of TIM3).
+        DMA?
+    Score Sensors (maybe in game tick):
+        GPIO lines
+        Timer for refresh (could probably use other channel of TIM3)
+        DMA?
+        SPI? (use Serial to Parallel shift register)
+    Audio
+        Timer
+        ADC
+        DMA
+        SRAM
+            (SampleRate / MinFrequency) * #BytesPerSample
+            (48000 / 20) * 2 = 4800
