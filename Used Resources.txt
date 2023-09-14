@@ -1,8 +1,8 @@
 
 GPIO
     GPIOC 
-        Pins Used: 0-6, 8-13 (HUB75)
-        Cannot use free pins in "output" mode (value will be overridden)
+        Pins Used: 0-13 (HUB75)
+        Cannot use free pins in "output" mode (value will be overridden) (HUB75)
 
 Timers
     TIM 3 
@@ -17,6 +17,10 @@ SRAM
     HUB75
         (#Columns + #ExtraColumns) * (#Rows / #RowsPerCycle) * #BytesPerPixel
         (64 + 3) * (32 / 2)  * 2  = 2144 bytes
+
+FLASH
+    HUB75
+        Fonts (unknown)
 
 Possible further needed
     Game tick:
