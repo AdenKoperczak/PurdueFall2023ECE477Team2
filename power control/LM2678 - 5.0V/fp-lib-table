@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "LM2678-TO263")(type "KiCad")(uri "${KIPRJMOD}/LM2678-TO263/footprints.pretty")(options "")(descr ""))
+  (lib (name "TPS79633KTTR")(type "KiCad")(uri "${KIPRJMOD}/TPS79633KTTR/footprints.pretty")(options "")(descr ""))
+  (lib (name "LIB_MSS1210-103MEB")(type "KiCad")(uri "${KIPRJMOD}/LIB_MSS1210-103MEB/MSS1210-103MEB/KiCad")(options "")(descr ""))
+)
