@@ -377,7 +377,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "error",
+      "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
       "similar_labels": "warning",
       "simulation_model_issue": "error",
@@ -392,7 +392,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Schematic.kicad_pro",
+    "filename": "Audio AMP.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -469,24 +469,8 @@
   },
   "sheets": [
     [
-      "ced54cd9-3b34-40e4-aa66-964aaab81b0a",
+      "706fd62c-110f-4e47-b9ed-44dda2e42685",
       ""
-    ],
-    [
-      "49528601-a054-44d2-8cd6-b055d7d9a1ef",
-      "microprocessor"
-    ],
-    [
-      "1629468b-8e9d-4ab7-97ca-858e6989be67",
-      "hub75"
-    ],
-    [
-      "b3c6fc2a-9568-48a3-9317-55c435503364",
-      "keypad"
-    ],
-    [
-      "3dc37a54-006b-430f-992a-c37d5e0558dd",
-      "audio"
     ]
   ],
   "text_variables": {}

@@ -25,6 +25,23 @@
     )
   )
 
+  (sheet (at 92.71 88.9) (size 12.7 3.81) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 3dc37a54-006b-430f-992a-c37d5e0558dd)
+    (property "Sheetname" "audio" (at 92.71 88.1884 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "audio.kicad_sch" (at 92.71 93.2946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "Schematic"
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a" (page "5"))
+      )
+    )
+  )
+
   (sheet (at 227.33 41.91) (size 27.94 3.81) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
