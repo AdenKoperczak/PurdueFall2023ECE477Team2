@@ -25,6 +25,23 @@
     )
   )
 
+  (sheet (at 57.15 118.11) (size 12.7 3.81) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 17b7dae5-2f82-4d17-9b49-7ea60414647f)
+    (property "Sheetname" "power" (at 57.15 117.3984 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "power.kicad_sch" (at 57.15 122.5046 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "Schematic"
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a" (page "6"))
+      )
+    )
+  )
+
   (sheet (at 92.71 88.9) (size 12.7 3.81) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))

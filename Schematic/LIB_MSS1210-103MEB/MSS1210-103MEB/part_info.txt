@@ -1,0 +1,9 @@
+Manufacturer=COILCRAFT
+PartNumber=MSS1210-103MEB
+PartCategory=Inductor
+PackageCategory=Inductors Precision Moulded
+PinCount=2
+Version=1.1
+Released=2022-09-16 06:08:45
+Downloaded=2023-09-20 23:46:46
+3D=Y
