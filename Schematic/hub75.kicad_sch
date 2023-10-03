@@ -1438,11 +1438,6 @@
     (uuid ef00a10e-69e8-45f6-8b66-0d471817c097)
   )
 
-  (text "1.8V @ 0.7mA" (at 43.18 72.39 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 80efcc57-3b8d-4e2f-bd8a-297a94fd53b5)
-  )
-
   (global_label "PC12" (shape input) (at 109.22 53.34 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 031f646a-88a0-4a54-aca0-2108ef1ae130)
@@ -2012,7 +2007,7 @@
     (property "Reference" "R1" (at 61.4172 63.6016 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "5.1k" (at 61.4172 65.913 0)
+    (property "Value" "5.6k" (at 61.4172 65.913 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder" (at 60.706 65.024 90)
