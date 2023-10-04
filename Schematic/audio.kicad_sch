@@ -683,7 +683,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 69.2658 76.327 0)
-      (effects (font (size 1.27 1.27)) hide)
+      (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "" (at 73.66 76.2 0)
       (effects (font (size 1.27 1.27)) hide)

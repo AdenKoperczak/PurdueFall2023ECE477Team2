@@ -3,4 +3,5 @@
   (lib (name "STM32F091RCT6")(type "KiCad")(uri "${KIPRJMOD}/STM32F091RCT6/footprints.pretty")(options "")(descr ""))
   (lib (name "LM2678-TO263")(type "KiCad")(uri "${KIPRJMOD}/LM2678-TO263/footprints.pretty")(options "")(descr ""))
   (lib (name "LIB_MSS1210-103MEB")(type "KiCad")(uri "${KIPRJMOD}/LIB_MSS1210-103MEB/MSS1210-103MEB/KiCad")(options "")(descr ""))
+  (lib (name "Custom")(type "KiCad")(uri "${KIPRJMOD}/Custom.pretty")(options "")(descr ""))
 )
