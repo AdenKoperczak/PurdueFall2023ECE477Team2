@@ -230,23 +230,6 @@
     )
   )
 
-  (sheet (at 154.94 123.19) (size 12.7 3.81) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 9235543c-f597-43a9-a615-518486df379c)
-    (property "Sheetname" "Extra Points" (at 154.94 122.4784 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "extra_points.kicad_sch" (at 154.94 127.5846 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Schematic"
-        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a" (page "8"))
-      )
-    )
-  )
-
   (sheet (at 66.04 73.66) (size 19.05 26.67) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))

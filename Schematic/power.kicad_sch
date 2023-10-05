@@ -986,10 +986,10 @@
     (uuid 11b03687-57d5-44b1-8534-768015b555e9)
   )
 
-  (global_label "VA" (shape input) (at 125.73 99.06 0) (fields_autoplaced)
+  (global_label "Vin" (shape input) (at 125.73 99.06 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid dd338e8b-cd9d-4c87-ac27-e52ff812569e)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 130.813 99.06 0)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 131.4782 99.06 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
