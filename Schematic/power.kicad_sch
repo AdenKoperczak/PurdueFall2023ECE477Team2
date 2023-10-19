@@ -1050,7 +1050,7 @@
     (property "Datasheet" "" (at 110.49 107.95 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 8adfdf15-1e4b-478e-9490-2ea74afa1da9))
+    (pin "1" (uuid a292c5a6-ed95-48e7-8c49-af125f567f30))
     (instances
       (project "stm32f091"
         (path "/1a854c3f-f20e-4271-9c06-678b7140bb2e"
@@ -1071,7 +1071,7 @@
           (reference "#PWR024") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR023") (unit 1)
+          (reference "#PWR051") (unit 1)
         )
       )
     )
@@ -1092,8 +1092,8 @@
     (property "Datasheet" "http://www.vishay.com/docs/88525/1n5817.pdf" (at 176.53 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid b5114566-074d-4ef8-895c-296758eebc96))
-    (pin "2" (uuid e23a8a8d-342f-4c80-a4f2-747ea08c7e90))
+    (pin "1" (uuid c70d48d8-e5a7-40b9-84df-b04ff9f275e2))
+    (pin "2" (uuid f8b11876-75a1-4fbb-8422-37d96ab149df))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1102,7 +1102,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "D2") (unit 1)
+          (reference "D1") (unit 1)
         )
       )
     )
@@ -1123,8 +1123,8 @@
     (property "Datasheet" "~" (at 176.53 22.86 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1b7c9b03-0a98-4847-9f87-6a1e2062638b))
-    (pin "2" (uuid bb1f6902-7a64-4087-8298-4c75fa0bc3c6))
+    (pin "1" (uuid df01ab39-3f83-4965-ae5a-68ddfb04336f))
+    (pin "2" (uuid 1d024e30-e414-4daf-a049-5a66d4df8380))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1142,7 +1142,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 138.43 96.52 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 16d0b197-baee-4b7f-8219-0b191a6f849f)
-    (property "Reference" "TP4" (at 139.827 92.0059 0)
+    (property "Reference" "TP2" (at 139.827 92.0059 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "3V" (at 139.827 94.4301 0)
@@ -1154,11 +1154,11 @@
     (property "Datasheet" "~" (at 143.51 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid a4dbff54-f4be-4374-8384-d7d9bc2363ba))
+    (pin "1" (uuid 15146512-cf5e-41b9-adfc-eff401ba1b47))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "TP4") (unit 1)
+          (reference "TP2") (unit 1)
         )
       )
     )
@@ -1179,8 +1179,8 @@
     (property "Datasheet" "~" (at 194.31 26.67 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1fe4e4db-9227-4aac-9dd7-ea48a0d2beec))
-    (pin "2" (uuid c2bd4ec3-e54a-4f8e-af38-e03108df3377))
+    (pin "1" (uuid a7c5bfcf-abd3-4d35-874f-3920eb1040c1))
+    (pin "2" (uuid a68fb004-5112-4749-9b90-5d932c987a3b))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1210,8 +1210,8 @@
     (property "Datasheet" "" (at 220.98 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2680a31d-0faa-4a0b-8b7c-05aaadd05f3d))
-    (pin "2" (uuid fe0ea4ab-89ce-459d-a276-f028cae17785))
+    (pin "1" (uuid ec84b57b-97c9-44eb-a318-2fb623c7ed6b))
+    (pin "2" (uuid 4431778e-4c1c-424b-84bd-abbc2434ecb2))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1226,7 +1226,7 @@
           (reference "R40") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "R42") (unit 1)
+          (reference "R47") (unit 1)
         )
       )
     )
@@ -1235,7 +1235,7 @@
   (symbol (lib_id "Device:C") (at 95.25 102.87 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2363725d-7843-49dd-b101-0903ec295bbe)
-    (property "Reference" "C13" (at 99.06 102.235 0)
+    (property "Reference" "C14" (at 99.06 102.235 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100n" (at 99.06 104.775 0)
@@ -1247,12 +1247,12 @@
     (property "Datasheet" "~" (at 95.25 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 3214c37c-8a32-4fb4-a769-fdf90f319315))
-    (pin "2" (uuid cc3ce90d-c692-4f23-802d-bde7eead583f))
+    (pin "1" (uuid b9b2e7e8-636c-4261-8867-95bf491045f2))
+    (pin "2" (uuid 765384a4-7c37-4883-92f1-b8735ef48407))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "C13") (unit 1)
+          (reference "C14") (unit 1)
         )
       )
     )
@@ -1273,8 +1273,8 @@
     (property "Datasheet" "~" (at 62.23 50.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 6a3e5055-a299-4fd5-813b-11c5e9e2cf2d))
-    (pin "2" (uuid 89bf9e25-4459-4b95-87a0-08072d059790))
+    (pin "1" (uuid 6bcb6f44-8525-4f2d-8048-796a1ca44fbe))
+    (pin "2" (uuid b5636628-dad2-4bad-9085-30287db05921))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1292,7 +1292,7 @@
   (symbol (lib_id "power:+5V") (at 205.74 26.67 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3d320618-b56d-44cf-a56f-84de2d181e21)
-    (property "Reference" "#PWR043" (at 205.74 30.48 0)
+    (property "Reference" "#PWR054" (at 205.74 30.48 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 205.74 22.86 0)
@@ -1304,11 +1304,11 @@
     (property "Datasheet" "" (at 205.74 26.67 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid ca29d2b2-f7d3-4acf-bb2a-31ae4c995284))
+    (pin "1" (uuid 344fd275-1190-4639-a7ad-a0778114946f))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR043") (unit 1)
+          (reference "#PWR054") (unit 1)
         )
       )
     )
@@ -1329,7 +1329,7 @@
     (property "Datasheet" "" (at 158.75 58.42 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 41a33861-1c49-45ca-be7e-81217d6b80ec))
+    (pin "1" (uuid 55917a2c-d8c2-400c-beea-910aa9e8e7be))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1338,7 +1338,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR037") (unit 1)
+          (reference "#PWR053") (unit 1)
         )
       )
     )
@@ -1359,7 +1359,7 @@
     (property "Datasheet" "" (at 138.43 109.22 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid db12a06a-2342-451a-97a9-c3c550463a17))
+    (pin "1" (uuid de558adf-88dc-4759-ad2f-212fff68795c))
     (instances
       (project "stm32f091"
         (path "/1a854c3f-f20e-4271-9c06-678b7140bb2e"
@@ -1380,7 +1380,7 @@
           (reference "#PWR024") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR025") (unit 1)
+          (reference "#PWR052") (unit 1)
         )
       )
     )
@@ -1401,71 +1401,8 @@
     (property "Datasheet" "" (at 220.98 41.91 90)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid e85b6d87-5a3c-4b1a-8c45-21a1e5cd43ce))
-    (pin "2" (uuid bb942e40-bff4-43d6-8d01-8a1687722206))
-    (instances
-      (project "stm32f091"
-        (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
-          (reference "LD1") (unit 1)
-        )
-      )
-      (project "Schematic"
-        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/49528601-a054-44d2-8cd6-b055d7d9a1ef"
-          (reference "LD1") (unit 1)
-        )
-        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/1629468b-8e9d-4ab7-97ca-858e6989be67"
-          (reference "LD2") (unit 1)
-        )
-        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "LD4") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:C") (at 125.73 102.87 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 53066e60-327d-435f-a01a-9f09151a080e)
-    (property "Reference" "C14" (at 129.54 102.235 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "10u" (at 129.54 104.775 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" (at 126.6952 106.68 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 125.73 102.87 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 43474b34-892d-4d1b-b39e-9710c9f8bc3f))
-    (pin "2" (uuid 55513370-f793-4cfb-8cae-d1b87a5add98))
-    (instances
-      (project "Schematic"
-        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "C14") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "stm32f091-rescue:LED_Small_ALT-Device") (at 138.43 106.68 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 6c452fcc-c23b-444a-a5c5-896d31ada7dd)
-    (property "Reference" "LD1" (at 140.208 105.5116 90)
-      (effects (font (size 1.27 1.27)) (justify right))
-    )
-    (property "Value" "LED_Red" (at 140.208 107.823 90)
-      (effects (font (size 1.27 1.27)) (justify right))
-    )
-    (property "Footprint" "LED_THT:LED_D5.0mm" (at 138.43 106.68 90)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 138.43 106.68 90)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 26398a7b-7608-4a94-ad6b-c8525e7147d1))
-    (pin "2" (uuid e259497c-1647-4981-a322-1323210d17e6))
+    (pin "1" (uuid 0d60347d-687b-429c-8ece-84b767f9eb5e))
+    (pin "2" (uuid 23a40f4f-df06-40dd-bbb4-5d0de30154cd))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1486,6 +1423,69 @@
     )
   )
 
+  (symbol (lib_id "Device:C") (at 125.73 102.87 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 53066e60-327d-435f-a01a-9f09151a080e)
+    (property "Reference" "C15" (at 129.54 102.235 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "10u" (at 129.54 104.775 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" (at 126.6952 106.68 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 125.73 102.87 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid f8980890-d54e-4fa6-9e32-f59515aee69b))
+    (pin "2" (uuid 67ba4c79-33b3-4b66-b9b0-2c589159a387))
+    (instances
+      (project "Schematic"
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
+          (reference "C15") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "stm32f091-rescue:LED_Small_ALT-Device") (at 138.43 106.68 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 6c452fcc-c23b-444a-a5c5-896d31ada7dd)
+    (property "Reference" "LD1" (at 140.208 105.5116 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" "LED_Red" (at 140.208 107.823 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "LED_THT:LED_D5.0mm" (at 138.43 106.68 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 138.43 106.68 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid e4f43d61-f6b8-4009-92d0-d9a7f8e929b1))
+    (pin "2" (uuid da9011fb-2ee3-4b95-adae-e81a2819b341))
+    (instances
+      (project "stm32f091"
+        (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
+          (reference "LD1") (unit 1)
+        )
+      )
+      (project "Schematic"
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/49528601-a054-44d2-8cd6-b055d7d9a1ef"
+          (reference "LD1") (unit 1)
+        )
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/1629468b-8e9d-4ab7-97ca-858e6989be67"
+          (reference "LD2") (unit 1)
+        )
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
+          (reference "LD4") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GND") (at 52.07 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 70f728ca-a14a-4d1d-a3dd-e77789725d1f)
@@ -1501,7 +1501,7 @@
     (property "Datasheet" "" (at 52.07 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid d55be214-cbe4-4d46-8684-594abc248d8e))
+    (pin "1" (uuid d433a4c1-0402-45f4-a6ed-765a90fa9879))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1516,7 +1516,7 @@
           (reference "#PWR040") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR045") (unit 1)
+          (reference "#PWR048") (unit 1)
         )
       )
     )
@@ -1537,9 +1537,9 @@
     (property "Datasheet" "~" (at 35.56 46.99 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 3fce083d-d36d-48c2-b6c4-40021862de39))
-    (pin "2" (uuid 8b766dc4-f3d6-4442-9509-a9635040ae10))
-    (pin "3" (uuid 936b7d8d-eaa2-492a-8b72-860432e02523))
+    (pin "1" (uuid d72dd7df-a779-436f-ad9f-4ec89f0ee7d1))
+    (pin "2" (uuid b936819f-2029-4e2c-9ce7-f368e51cc664))
+    (pin "3" (uuid 0ee7a1db-c484-4eea-85a5-a4bae5ec9ae5))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1548,7 +1548,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "J6") (unit 1)
+          (reference "J7") (unit 1)
         )
       )
     )
@@ -1569,14 +1569,14 @@
     (property "Datasheet" "LM2678S-12" (at 97.79 41.91 0)
       (effects (font (size 1.27 1.27) italic) hide)
     )
-    (pin "1" (uuid 4da2d7cb-1aca-41bc-b3b6-7571c07bfe87))
-    (pin "2" (uuid c14e50d0-3ecc-4dec-bdb1-709e961d8cff))
-    (pin "3" (uuid 951727d2-1da2-4fba-9251-616c689ee377))
-    (pin "4" (uuid 0fd89bc3-c459-4fce-85fe-56fc2cff9060))
-    (pin "5" (uuid dbb56aa5-c496-48ce-aaf9-5200db5007c6))
-    (pin "6" (uuid 156b4da7-cb1f-4295-be24-e730d7d0eee7))
-    (pin "7" (uuid b8faba7f-7bdf-4d13-8665-aef03776b445))
-    (pin "8" (uuid c402556b-aac8-4f89-92ea-d4ac5a954cf7))
+    (pin "1" (uuid 8e7bef45-975f-4914-8ff1-27f8f2c37694))
+    (pin "2" (uuid f3f5f83f-4cde-4965-b062-0239e20f1873))
+    (pin "3" (uuid bd07ef62-00cf-4ea8-b4fb-9ecfcf2b00cd))
+    (pin "4" (uuid 2e90f0a6-c306-4554-88fa-29a20d896269))
+    (pin "5" (uuid 1dc3675a-ad47-46f2-9e33-ab1c5610b888))
+    (pin "6" (uuid fa537522-e9cf-4c4b-a72f-32c6a58922d2))
+    (pin "7" (uuid 9e6e7a87-3b5d-4fc5-8f58-53edb409c6bd))
+    (pin "8" (uuid 7a6d017d-a350-4c88-8261-f9f712dfcd3c))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1585,7 +1585,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "U4") (unit 1)
+          (reference "U5") (unit 1)
         )
       )
     )
@@ -1606,7 +1606,7 @@
     (property "Datasheet" "" (at 220.98 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 16b76928-5b29-43f8-a262-aa6787ef0d79))
+    (pin "1" (uuid 5551464e-5ad1-46a4-aa1d-3fbfbdda5653))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1621,7 +1621,7 @@
           (reference "#PWR040") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR046") (unit 1)
+          (reference "#PWR055") (unit 1)
         )
       )
     )
@@ -1630,7 +1630,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 220.98 31.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8123ec8d-7330-4f17-894c-5b8d39b3f258)
-    (property "Reference" "TP2" (at 222.377 27.2359 0)
+    (property "Reference" "TP4" (at 222.377 27.2359 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5V" (at 222.377 29.6601 0)
@@ -1642,11 +1642,11 @@
     (property "Datasheet" "~" (at 226.06 31.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 6d0b8c71-b90f-4e1a-bb62-783fdf42ad0e))
+    (pin "1" (uuid 2467e6ba-34b1-40b9-a296-03470b3be948))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "TP2") (unit 1)
+          (reference "TP4") (unit 1)
         )
       )
     )
@@ -1655,7 +1655,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 52.07 44.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 87c50356-a23b-42be-a8d8-afceac9318d9)
-    (property "Reference" "TP3" (at 53.467 39.9359 0)
+    (property "Reference" "TP1" (at 53.467 39.9359 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "12V" (at 53.467 42.3601 0)
@@ -1667,11 +1667,11 @@
     (property "Datasheet" "~" (at 57.15 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 82add8ea-7deb-462a-9e46-f19ca2e6fdcc))
+    (pin "1" (uuid 47b8fd68-5af7-4086-bf35-253a0e136b25))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "TP3") (unit 1)
+          (reference "TP1") (unit 1)
         )
       )
     )
@@ -1680,7 +1680,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 158.75 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 954571cd-ede6-4807-81a9-1dda346dc3fa)
-    (property "Reference" "TP1" (at 160.147 53.9059 0)
+    (property "Reference" "TP3" (at 160.147 53.9059 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "GND" (at 160.147 56.3301 0)
@@ -1692,11 +1692,11 @@
     (property "Datasheet" "~" (at 163.83 58.42 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 77b90606-40f2-429b-a22f-09dde971e28f))
+    (pin "1" (uuid 93158576-1acc-4d22-aee9-08cb734c65c1))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "TP1") (unit 1)
+          (reference "TP3") (unit 1)
         )
       )
     )
@@ -1705,7 +1705,7 @@
   (symbol (lib_id "power:+12V") (at 80.01 44.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 99012084-ab37-4cc2-82a4-b0db693c97fb)
-    (property "Reference" "#PWR042" (at 80.01 48.26 0)
+    (property "Reference" "#PWR049" (at 80.01 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+12V" (at 80.01 40.64 0)
@@ -1717,11 +1717,11 @@
     (property "Datasheet" "" (at 80.01 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid d9827429-0c46-40c3-9a11-9f371e02651e))
+    (pin "1" (uuid ac71fb3c-14b8-46f3-992d-003ce4a93009))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR042") (unit 1)
+          (reference "#PWR049") (unit 1)
         )
       )
     )
@@ -1730,7 +1730,7 @@
   (symbol (lib_id "Regulator_Linear:LD1117S33TR_SOT223") (at 110.49 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b5184954-936f-434f-8b27-62a6780f24a1)
-    (property "Reference" "U5" (at 110.49 92.71 0)
+    (property "Reference" "U6" (at 110.49 92.71 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "LD1117S33TR_SOT223" (at 110.49 95.25 0)
@@ -1742,13 +1742,13 @@
     (property "Datasheet" "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00000544.pdf" (at 113.03 105.41 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 6d28239b-6ea4-4c4f-bc65-7751f02ae821))
-    (pin "2" (uuid f53a32e8-3724-408c-9971-1e5178b13e21))
-    (pin "3" (uuid 805cacad-f350-4a2c-8bb3-411df9109247))
+    (pin "1" (uuid 3ea58417-e389-4044-88ed-09a05740dd2f))
+    (pin "2" (uuid 266c1801-8063-47b9-bc5f-cd667c4782bd))
+    (pin "3" (uuid 3970d83e-b4c7-4a30-abad-4b51d256baa5))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "U5") (unit 1)
+          (reference "U6") (unit 1)
         )
       )
     )
@@ -1757,7 +1757,7 @@
   (symbol (lib_id "power:+5V") (at 95.25 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid bc60edac-a59d-4a4a-8660-1c642ff4e668)
-    (property "Reference" "#PWR044" (at 95.25 102.87 0)
+    (property "Reference" "#PWR050" (at 95.25 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 95.25 95.25 0)
@@ -1769,11 +1769,11 @@
     (property "Datasheet" "" (at 95.25 99.06 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1c087490-0e33-429c-898d-c454492fb4c0))
+    (pin "1" (uuid ab62fbea-bf08-4103-8b32-4aaf94e793ee))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR044") (unit 1)
+          (reference "#PWR050") (unit 1)
         )
       )
     )
@@ -1794,7 +1794,7 @@
     (property "Datasheet" "" (at 45.72 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 632eca29-b649-4aeb-b836-ba542dd90b9c))
+    (pin "1" (uuid 7471643d-d8d6-4495-abb8-e5918dd6f02d))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1803,7 +1803,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "#PWR035") (unit 1)
+          (reference "#PWR047") (unit 1)
         )
       )
     )
@@ -1824,8 +1824,8 @@
     (property "Datasheet" "~" (at 80.01 50.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid af921b0c-681f-40fa-851c-b640a16c4566))
-    (pin "2" (uuid 00cc8dcd-f5f0-4a75-b4d1-40da3d0f3b5d))
+    (pin "1" (uuid 2d43fcff-d83c-4a4a-a434-682404552d75))
+    (pin "2" (uuid 33d57a56-d0a2-41ae-bcfe-f349bcd7280c))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1855,8 +1855,8 @@
     (property "Datasheet" "~" (at 205.74 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid dcc00e83-9790-49ce-9a6c-f12042d5fbeb))
-    (pin "2" (uuid 1f94b6f7-e904-4f10-9e1d-6a0a47622c44))
+    (pin "1" (uuid 33b41896-201c-47a7-85de-3d7616a92bd3))
+    (pin "2" (uuid c185446d-0ad1-4a80-a5d5-530048d37c3d))
     (instances
       (project "LM2678 - 5.0V"
         (path "/519fb26c-708f-40e5-b123-022e0171115d"
@@ -1886,8 +1886,8 @@
     (property "Datasheet" "" (at 52.07 60.96 90)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 388be8be-84b4-408f-bab9-6524dbb582ee))
-    (pin "2" (uuid 8a8706f5-5aa5-49ac-912f-ebd65163e43f))
+    (pin "1" (uuid aecf3921-d678-4a99-a65c-1490b4f53243))
+    (pin "2" (uuid fa8b58db-747d-4162-8319-c652cc809aa5))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1923,8 +1923,8 @@
     (property "Datasheet" "" (at 138.43 100.33 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 4f0720d3-fc35-42fe-a6f6-2593691fb61a))
-    (pin "2" (uuid 435731bc-a94d-4129-94f0-d65c387449e0))
+    (pin "1" (uuid bb092e14-e346-48bd-a5f1-b5947501aae8))
+    (pin "2" (uuid 8e8a4243-6526-4d42-98ef-d421512e6125))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1939,7 +1939,7 @@
           (reference "R40") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "R43") (unit 1)
+          (reference "R46") (unit 1)
         )
       )
     )
@@ -1960,8 +1960,8 @@
     (property "Datasheet" "" (at 52.07 54.61 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1c172ea7-7540-46c1-a4ee-fcd7035fe483))
-    (pin "2" (uuid 8ceb7d52-bf5b-4f55-82cc-839994f93b18))
+    (pin "1" (uuid 521832e2-863a-4081-a97d-e1dfb554447b))
+    (pin "2" (uuid 3158fdad-7da4-4ed8-b14a-7b66d2c0aff1))
     (instances
       (project "stm32f091"
         (path "/5ce0f945-8ce0-4168-b91a-66b013b0da45"
@@ -1976,7 +1976,7 @@
           (reference "R40") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/17b7dae5-2f82-4d17-9b49-7ea60414647f"
-          (reference "R41") (unit 1)
+          (reference "R45") (unit 1)
         )
       )
     )

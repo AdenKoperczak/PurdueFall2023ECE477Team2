@@ -629,8 +629,8 @@
     (property "Datasheet" "~" (at 66.04 58.42 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2d20e68e-3eb1-4cf0-9581-b29882baac43))
-    (pin "2" (uuid 1e76260c-5b2c-4268-91a8-75f329ccc244))
+    (pin "1" (uuid f25210a9-bbb9-4071-b611-415848406863))
+    (pin "2" (uuid a6cfb182-762e-40a6-b603-229e04edb622))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -639,7 +639,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "R3") (unit 1)
+          (reference "R41") (unit 1)
         )
       )
     )
@@ -660,8 +660,8 @@
     (property "Datasheet" "~" (at 105.41 49.53 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1f0259fc-7293-4edf-bcdd-79db965256c1))
-    (pin "2" (uuid fddcae88-beb0-49d0-bebb-cf98b5ed2674))
+    (pin "1" (uuid ad002e3b-0759-41f5-9703-0660c9170815))
+    (pin "2" (uuid 1248147c-7ee3-498d-938c-f41c458ea22a))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -670,7 +670,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "C8") (unit 1)
+          (reference "C11") (unit 1)
         )
       )
     )
@@ -691,7 +691,7 @@
     (property "Datasheet" "" (at 73.66 76.2 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid aacbf4d9-ae08-46a2-91fa-b29eeb69ec85))
+    (pin "1" (uuid 73015244-9855-454c-85b9-5efbcda111ae))
     (instances
       (project "stm32f091"
         (path "/1a854c3f-f20e-4271-9c06-678b7140bb2e"
@@ -709,7 +709,7 @@
           (reference "#PWR020") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "#PWR038") (unit 1)
+          (reference "#PWR044") (unit 1)
         )
       )
     )
@@ -730,8 +730,8 @@
     (property "Datasheet" "" (at 95.25 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid f305957b-8282-47d9-a965-45f51aafcdd8))
-    (pin "2" (uuid ff2e6a52-86d7-4849-8d88-0877f568b54c))
+    (pin "1" (uuid 5ac2d53c-908a-4598-8ee3-5ec87cf8a01e))
+    (pin "2" (uuid 980fd592-569c-4d18-810b-f903896d67e1))
     (instances
       (project "stm32f091"
         (path "/1a854c3f-f20e-4271-9c06-678b7140bb2e"
@@ -743,7 +743,7 @@
           (reference "C3") (unit 1)
         )
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "C11") (unit 1)
+          (reference "C9") (unit 1)
         )
       )
     )
@@ -752,7 +752,7 @@
   (symbol (lib_id "Connector_Generic:Conn_02x01") (at 137.16 66.04 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 51d30602-9037-4bdf-8491-3734e450bb7e)
-    (property "Reference" "J4" (at 139.192 66.0979 90)
+    (property "Reference" "J6" (at 139.192 66.0979 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "AUDIO_OUT" (at 139.192 68.5221 90)
@@ -764,12 +764,12 @@
     (property "Datasheet" "~" (at 137.16 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 33eda4d7-44d4-415e-9e45-78aa22769551))
-    (pin "2" (uuid 4d47f411-e68a-4455-8fd5-ccb914081cd5))
+    (pin "1" (uuid ef0c8019-d37f-4800-a712-4a4b2b1d6c9f))
+    (pin "2" (uuid f047f803-5a0e-403f-8d3e-8dade4b86821))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "J4") (unit 1)
+          (reference "J6") (unit 1)
         )
       )
     )
@@ -778,7 +778,7 @@
   (symbol (lib_id "power:GNDA") (at 133.35 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 560832c4-2899-4656-820a-ba3237e75c3d)
-    (property "Reference" "#PWR039" (at 133.35 85.09 0)
+    (property "Reference" "#PWR046" (at 133.35 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GNDA" (at 133.35 83.82 0)
@@ -790,11 +790,11 @@
     (property "Datasheet" "" (at 133.35 78.74 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 565a67e3-e462-46d2-b82f-fe5c17bd1f80))
+    (pin "1" (uuid 6273dc7c-ed0b-4747-a3f9-15ae502ae65c))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "#PWR039") (unit 1)
+          (reference "#PWR046") (unit 1)
         )
       )
     )
@@ -815,8 +815,8 @@
     (property "Datasheet" "~" (at 119.38 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 9fd258bd-b896-4c42-afc3-ddc43ad88d8b))
-    (pin "2" (uuid a20c8f4f-b9db-4935-9dcf-dada12d24430))
+    (pin "1" (uuid 0e1610d6-0201-4566-9165-6ce178e5bca6))
+    (pin "2" (uuid 2be66568-e0fa-4e34-8fa7-4c6097f1b34d))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -825,7 +825,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "C9") (unit 1)
+          (reference "C12") (unit 1)
         )
       )
     )
@@ -834,7 +834,7 @@
   (symbol (lib_id "power:GNDA") (at 105.41 44.45 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 89b812c1-3882-4250-bf92-293d7ba124bc)
-    (property "Reference" "#PWR030" (at 105.41 38.1 0)
+    (property "Reference" "#PWR045" (at 105.41 38.1 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GNDA" (at 105.41 40.64 0)
@@ -846,11 +846,11 @@
     (property "Datasheet" "" (at 105.41 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid ea0449c9-fc0b-4c06-8e66-4888dd815387))
+    (pin "1" (uuid 731ed62b-ed6f-436a-a14a-e51a70ac7fc2))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "#PWR030") (unit 1)
+          (reference "#PWR045") (unit 1)
         )
       )
     )
@@ -871,8 +871,8 @@
     (property "Datasheet" "~" (at 119.38 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid e0b605e3-0164-4145-a1bb-9cb0d785a9c5))
-    (pin "2" (uuid 7f73d4e1-7cbb-4068-80f8-a41a36d67b0a))
+    (pin "1" (uuid 4a298692-9ad1-4797-a278-d60de8d3f503))
+    (pin "2" (uuid 8b17e21f-10fa-4f5a-b02f-d6ffbeb2d4ab))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -881,7 +881,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "R4") (unit 1)
+          (reference "R44") (unit 1)
         )
       )
     )
@@ -890,7 +890,7 @@
   (symbol (lib_id "power:+12V") (at 66.04 38.1 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ac7c6e14-b16d-4a63-ba94-b0671071a2a4)
-    (property "Reference" "#PWR032" (at 66.04 41.91 0)
+    (property "Reference" "#PWR043" (at 66.04 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+12V" (at 66.04 34.29 0)
@@ -902,11 +902,11 @@
     (property "Datasheet" "" (at 66.04 38.1 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid f2e671fd-0c4c-4ca9-a235-c6939448d1e3))
+    (pin "1" (uuid 0765ceab-95de-43e7-b21b-f7375cbfaa0f))
     (instances
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "#PWR032") (unit 1)
+          (reference "#PWR043") (unit 1)
         )
       )
     )
@@ -927,8 +927,8 @@
     (property "Datasheet" "~" (at 129.54 60.96 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 5f999fd7-afec-4809-8043-cb3af606e5c4))
-    (pin "2" (uuid da7ea0fb-af9d-4213-b016-1519640ac057))
+    (pin "1" (uuid 50fffe5e-aba7-4b48-b20d-1f83f550517a))
+    (pin "2" (uuid c07b2b43-3a7b-4f19-8387-a84b870c73d6))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -937,7 +937,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "C10") (unit 1)
+          (reference "C13") (unit 1)
         )
       )
     )
@@ -958,14 +958,14 @@
     (property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm386.pdf" (at 110.49 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 189be22d-7122-44ec-93b5-446dec117a2a))
-    (pin "2" (uuid fcd3d364-eb3b-43bb-9f19-77f43f99b6bd))
-    (pin "3" (uuid d7b5a94f-8d8c-41d3-88e8-1839694af1f6))
-    (pin "4" (uuid ed941f8b-236e-4ed0-98c2-92f795c61a55))
-    (pin "5" (uuid 09fe07dd-414e-4da5-b368-8e209031690e))
-    (pin "6" (uuid 0d327bed-d127-4751-9c36-58025c5c70cb))
-    (pin "7" (uuid 3e08318a-ce48-4a3a-9efd-4318f1549a12))
-    (pin "8" (uuid f11d43e0-a67f-49b6-9332-55cd267bc475))
+    (pin "1" (uuid dad7b223-08da-451d-9800-70bd48f86c60))
+    (pin "2" (uuid 3eb6f199-9cfc-4db1-9f22-e6ba992617f2))
+    (pin "3" (uuid 35ab467e-93cd-4a06-905b-80bab5533d49))
+    (pin "4" (uuid 27221e67-ded5-4159-a7ac-94f4aad70db7))
+    (pin "5" (uuid 3ab32250-e1de-4283-8043-d7d2fb487e32))
+    (pin "6" (uuid c2635d1e-d25c-4be5-8bba-f589045ccc86))
+    (pin "7" (uuid b69c75c5-5536-4072-8cdb-537b3b3c0731))
+    (pin "8" (uuid 05d034d8-666b-44d0-bf6b-d3c4790e1722))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -974,7 +974,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "U3") (unit 1)
+          (reference "U4") (unit 1)
         )
       )
     )
@@ -995,8 +995,8 @@
     (property "Datasheet" "~" (at 80.01 76.2 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 801f42d4-e703-4196-a07f-e7af77f310f8))
-    (pin "2" (uuid c3f699cd-2496-476e-951d-63201cf6bb45))
+    (pin "1" (uuid 97cb12fa-97b0-43cb-8f77-d9035d2fde62))
+    (pin "2" (uuid edef4b7a-e7b3-448b-a96e-1c6f6080a062))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -1005,7 +1005,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "R7") (unit 1)
+          (reference "R42") (unit 1)
         )
       )
     )
@@ -1026,8 +1026,8 @@
     (property "Datasheet" "~" (at 86.36 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 4bca5b8a-f35a-4a85-a2f6-ef61f09ab320))
-    (pin "2" (uuid e3f05a32-aae4-4def-bee3-1f9fe27251df))
+    (pin "1" (uuid 2d4933ae-22fa-4977-a94b-53783ccae0f5))
+    (pin "2" (uuid a0358a8a-d8b6-4a3c-b4aa-c878c15ef8f6))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -1036,7 +1036,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "R5") (unit 1)
+          (reference "R43") (unit 1)
         )
       )
     )
@@ -1057,8 +1057,8 @@
     (property "Datasheet" "~" (at 95.25 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2675c751-6dec-462b-8521-639ef8258341))
-    (pin "2" (uuid 5bcb0b06-06a1-4d06-90ff-8adbfcd01027))
+    (pin "1" (uuid 85733292-ad6d-4685-9e6c-bd2a667867ca))
+    (pin "2" (uuid e8caa919-0d91-4898-bfb0-3232f589ea21))
     (instances
       (project "Audio AMP"
         (path "/706fd62c-110f-4e47-b9ed-44dda2e42685"
@@ -1067,7 +1067,7 @@
       )
       (project "Schematic"
         (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a/3dc37a54-006b-430f-992a-c37d5e0558dd"
-          (reference "C7") (unit 1)
+          (reference "C10") (unit 1)
         )
       )
     )
