@@ -508,6 +508,10 @@
     [
       "575551e4-af3a-490e-80f8-c842b6f0dfe5",
       "Sensors"
+    ],
+    [
+      "25cb01c6-2cb7-4060-8c2f-18d126a958c4",
+      "WS2812B"
     ]
   ],
   "text_variables": {}

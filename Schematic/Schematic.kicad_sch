@@ -179,6 +179,23 @@
     )
   )
 
+  (sheet (at 152.4 115.57) (size 35.56 27.94) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 25cb01c6-2cb7-4060-8c2f-18d126a958c4)
+    (property "Sheetname" "WS2812B" (at 152.4 114.8584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "ws2812b.kicad_sch" (at 152.4 144.0946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "Schematic"
+        (path "/ced54cd9-3b34-40e4-aa66-964aaab81b0a" (page "8"))
+      )
+    )
+  )
+
   (sheet (at 143.51 83.82) (size 40.64 25.4) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
