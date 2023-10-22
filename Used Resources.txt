@@ -27,6 +27,10 @@ DMA
     DMA1_CHANNEL2 (WS2812B)
     DMA1_CHANNEL4 (HUB75)
 
+Interupts:
+    DMA1_CH2_3_DMA2_CH1_2_IRQHandler: WS2812B
+    EXTI 8-14: Sensors
+
 SRAM
     HUB75
         (#Columns + #ExtraColumns) * (#Rows / #RowsPerCycle) * #BytesPerPixel
