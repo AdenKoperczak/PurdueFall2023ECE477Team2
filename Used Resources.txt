@@ -15,6 +15,7 @@ GPIO
 
 Timers
     TIM 2
+        Timer gets disabled.
         PRE = 18; (WS2812B)
         ARR =  2; (WS2812B)
         Channel 4 (CC4) used (WS2812B)
@@ -22,10 +23,15 @@ Timers
         PRE = 0; (HUB75)
         ARR = 0xff; (HUB75)
         Channel 1 (CC1) used (HUB75)
+    TIM 6
+        SoundLib
 
 DMA
     DMA1_CHANNEL2 (WS2812B)
     DMA1_CHANNEL4 (HUB75)
+
+DAC
+    SoundLib
 
 Interupts:
     DMA1_CH2_3_DMA2_CH1_2_IRQHandler: WS2812B
