@@ -16,6 +16,18 @@ volatile uint32_t currentTime;
 volatile uint32_t offTime;
 
 
+
+
+void enable_dac(void) {
+    DAC->CR |= DAC_CR_EN1;
+    playing = 1;
+}
+
+void disable_dac(void) {
+    DAC->CR &= ~DAC_CR_EN1;
+    playing = 0;
+}
+
 //============================================================================
 // Timer 6 ISR
 //============================================================================
@@ -88,16 +100,6 @@ void sound_set_freq(int chan, int f, int volume) {
 
     channels[chan].offset = 0;
     channels[chan].step = (f * volume / SOUND_RATE);
-}
-
-void enable_dac(void) {
-    DAC->CR |= DAC_CR_EN1;
-    playing = 1;
-}
-
-void disable_dac(void) {
-    DAC->CR &= ~DAC_CR_EN1;
-    playing = 0;
 }
 
 
