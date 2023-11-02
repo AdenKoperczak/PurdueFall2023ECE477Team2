@@ -27,6 +27,8 @@ contains along with some soport files files.
 ## Microcontroller Code
 - HUB75Lib: This contains a library and test code to run a 32x64 HUB75 display
             including a font library.
+- WS2812BLib: This contains a library and test code for running a WS2812B LED strip.
+- SoundLib: This contains a library and test code for generating and playing audio.
 
 ## Other Code
 - HUB75Font\_Generate: This contains code for generating a font library for the
