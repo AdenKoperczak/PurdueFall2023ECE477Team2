@@ -100,9 +100,9 @@ void ws2812b_init() {
 
 void ws2812b_setpixel(uint32_t i, uint8_t r, uint8_t g, uint8_t b) {
 	if (i < WS2812B_N_PIXELS) {
-		ws2812bPixels[i * 3 + 0] = r;
-		ws2812bPixels[i * 3 + 1] = b;
-		ws2812bPixels[i * 3 + 2] = g;
+		ws2812bPixels[i * 3 + 0] = g;
+		ws2812bPixels[i * 3 + 1] = r;
+		ws2812bPixels[i * 3 + 2] = b;
 	}
 }
 

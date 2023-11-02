@@ -27,9 +27,13 @@ void TIM3_IRQHandler() {
 		}
 	}
 
-	ws2812b_setpixel(pos, (color << (6 - 4)) & 0x30,
-			              (color << (6 - 2)) & 0x30,
-						  (color << (6 - 0)) & 0x30);
+
+
+	ws2812b_setpixel(pos, (color << (6 - 4)) & 0xc0,
+			              (color << (6 - 2)) & 0xc0,
+						  (color << (6 - 0)) & 0xc0);
+
+	//ws2812b_setpixel(pos, 0, 0, 100);
 	ws2812b_refresh();
 	pos++;
 }
