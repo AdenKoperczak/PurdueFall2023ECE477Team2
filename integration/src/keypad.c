@@ -82,6 +82,7 @@ void TIM16_IRQHandler (void) {
 		column = 3;
 		keypadKey = currentPressed;
 		currentPressed = Keypad_None;
+		keypad_callback(keypadKey);
 	} else {
 		column--;
 	}

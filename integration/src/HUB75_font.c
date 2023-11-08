@@ -155,11 +155,45 @@ void hub75_font_render_str_7x5(char * c, int xp, int yp, uint8_t fr, uint8_t fg,
 }
 
 void hub75_font_render_int_7x5(int i, int dir, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
-	dir = dir ? -6 : 6;
+	if (!dir) {
+		int iCopy = i;
+		int n = -1;
+		do {
+			iCopy /= 10;
+			n++;
+		} while (iCopy > 0);
+
+		xp += n * 6;
+	}
 
 	do {
 		hub75_font_render_7x5('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
-		xp += dir;
+		xp -= 6;
 		i /= 10;
 	} while (i > 0 && xp >= 0 && xp < HUB75_WIDTH);
 }
+
+void hub75_font_render_int_n_7x5(int i, int n, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+
+	xp += 6 *n;
+
+	for (;n > 0; n--) {
+		hub75_font_render_7x5('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
+		xp -= 6;
+		i /= 10;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

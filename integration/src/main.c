@@ -19,6 +19,30 @@ const int tones[][2] = {
 		{350, 440}
 };
 
+int keyCount;
+int lastKey;
+
+void keypad_callback(int key) {
+	switch (key) {
+	case Keypad_None:
+		hub75_font_render_7x5(' ', HUB75_WIDTH - 7, 5, 1, 1, 0, 0, 0, 0);
+		break;
+	case Keypad_Invl:
+		hub75_font_render_7x5('I', HUB75_WIDTH - 7, 5, 1, 1, 0, 0, 0, 0);
+		break;
+	default:
+		hub75_font_render_7x5(keypadChars[key], HUB75_WIDTH - 7, 5, 1, 1, 0, 0, 0, 0);
+		break;
+	}
+
+	if (key != Keypad_None && key != Keypad_Invl && lastKey != Keypad_Invl && key != lastKey) {
+		keyCount ++;
+	}
+
+	lastKey = key;
+
+	hub75_font_render_int_7x5(keyCount, 0, 1, 16, 1, 1, 0, 0, 0, 0);
+}
 
 void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
@@ -28,18 +52,6 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
 	hub75_font_render_int_7x5(number, 1, HUB75_WIDTH - 7, 16, color & 0x4, color & 0x2, color & 0x1, 0, 0, 0);
 
-	int key = keypadKey;
-	switch (key) {
-	case Keypad_None:
-		hub75_font_render_7x5(' ', HUB75_WIDTH - 7, 5, 1, 1, 1, 0, 0, 0);
-		break;
-	case Keypad_Invl:
-		hub75_font_render_7x5('I', HUB75_WIDTH - 7, 5, 1, 1, 1, 0, 0, 0);
-		break;
-	default:
-		hub75_font_render_7x5(keypadChars[key], HUB75_WIDTH - 7, 5, 1, 1, 1, 0, 0, 0);
-		break;
-	}
 
 	if ((number & 0x3) == 0) {
 		sound_play(tones[currentTone][0], SOUND_MAX_VOL, tones[currentTone][1], SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.5);
@@ -77,11 +89,14 @@ int main(void) {
 	pos = 0;
 	wscolor = 1;
 	number = 0;
+	keyCount = 0;
+	lastKey  = Keypad_None;
 
 	ws2812b_init();
 	hub75_init(30);
 	sound_init();
 	keypad_init();
+
 
 	// HUB75 initial test.
 
