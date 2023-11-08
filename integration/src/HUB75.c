@@ -12,7 +12,7 @@ void hub75_init(int brightness) {
 
 		for (column = 0; column < HUB75_WIDTH; column++) {
 			pixels[rowOffset + column].color = HUB75_COLOR_CEN;
-			pixels[rowOffset + column].cr    = rowValue | ((brightness > column) ? 0 : HUB75_CR_ODE);
+			pixels[rowOffset + column].cr    = rowValue | ((brightness > column || column < 0) ? 0 : HUB75_CR_ODE);
 		}
 
 		pixels[rowOffset + column + 0].color = 0;

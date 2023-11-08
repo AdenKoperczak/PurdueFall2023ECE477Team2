@@ -1,11 +1,24 @@
 
-
+#include "ws2812b.h"
 #include "HUB75.h"
 #include "HUB75_font.h"
 #include "SoundLib.h"
+#include "keypad.h"
 #include "stm32f0xx.h"
 
 int number;
+int pos;
+int wscolor;
+int currentTone;
+
+const int tones[][2] = {
+		{277, 350},
+		{311, 415},
+		{330, 392},
+		{261, 311},
+		{350, 440}
+};
+
 
 void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
@@ -15,16 +28,60 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
 	hub75_font_render_int_7x5(number, 1, HUB75_WIDTH - 7, 16, color & 0x4, color & 0x2, color & 0x1, 0, 0, 0);
 
-	if ((number & 0xf) == 0) {
-		sound_play(440, SOUND_MAX_VOL, 0, 0, Sound_Single, SOUND_SECOND * 0.5);
+	int key = keypadKey;
+	switch (key) {
+	case Keypad_None:
+		hub75_font_render_7x5(' ', HUB75_WIDTH - 7, 5, 1, 1, 1, 0, 0, 0);
+		break;
+	case Keypad_Invl:
+		hub75_font_render_7x5('I', HUB75_WIDTH - 7, 5, 1, 1, 1, 0, 0, 0);
+		break;
+	default:
+		hub75_font_render_7x5(keypadChars[key], HUB75_WIDTH - 7, 5, 1, 1, 1, 0, 0, 0);
+		break;
 	}
+
+	if ((number & 0x3) == 0) {
+		sound_play(tones[currentTone][0], SOUND_MAX_VOL, tones[currentTone][1], SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.5);
+		currentTone++;
+		if (currentTone == sizeof(tones) / sizeof(tones[0])) {
+			currentTone = 0;
+		}
+	}
+
+
+	TIM3->SR &= ~TIM_SR_UIF;
+
+	if (pos == 14) {
+		pos = 0;
+		wscolor = wscolor + 1;
+
+		if (wscolor == 64) {
+			wscolor = 1;
+		}
+	}
+
+
+
+	ws2812b_setpixel(pos, (wscolor << (7 - 3)) & 0xc0,
+			              (wscolor << (7 - 1)) & 0xc0,
+						  (wscolor << (7 - 0)) & 0xc0);
+
+	ws2812b_refresh();
+	pos++;
 
 	number += 1;
 }
 
 int main(void) {
+	pos = 0;
+	wscolor = 1;
+	number = 0;
+
+	ws2812b_init();
 	hub75_init(30);
 	sound_init();
+	keypad_init();
 
 	// HUB75 initial test.
 

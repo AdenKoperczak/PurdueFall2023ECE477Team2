@@ -45,10 +45,12 @@ const Hub75Char7x5 char7x5N6 = {0x0e, 0x10, 0x10, 0x1e, 0x11, 0x11, 0x0e};
 const Hub75Char7x5 char7x5N7 = {0x1e, 0x01, 0x01, 0x02, 0x02, 0x04, 0x04};
 const Hub75Char7x5 char7x5N8 = {0x0e, 0x11, 0x11, 0x0e, 0x11, 0x11, 0x0e};
 const Hub75Char7x5 char7x5N9 = {0x0e, 0x11, 0x11, 0x0f, 0x01, 0x01, 0x01};
+const Hub75Char7x5 char7x5Sasterisk = {0x00, 0x11, 0x0a, 0x04, 0x0a, 0x11, 0x00};
 const Hub75Char7x5 char7x5Sbar = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04};
 const Hub75Char7x5 char7x5Scolon = {0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00};
 const Hub75Char7x5 char7x5Sdash = {0x00, 0x00, 0x00, 0x1f, 0x00, 0x00, 0x00};
 const Hub75Char7x5 char7x5Speriod = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04};
+const Hub75Char7x5 char7x5Spound = {0x0a, 0x0a, 0x1f, 0x0a, 0x1f, 0x0a, 0x0a};
 const Hub75Char7x5 char7x5Sspace = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 const Hub75Char7x5 char7x5Ua = {0x04, 0x0a, 0x11, 0x11, 0x1f, 0x11, 0x11};
 const Hub75Char7x5 char7x5Ub = {0x1e, 0x11, 0x11, 0x1e, 0x11, 0x11, 0x1e};
@@ -90,10 +92,12 @@ const Hub75Char7x5 * hub75_font_get_7x5(char c) {
 		case '7': return &char7x5N7;
 		case '8': return &char7x5N8;
 		case '9': return &char7x5N9;
+		case '*': return &char7x5Sasterisk;
 		case '|': return &char7x5Sbar;
 		case ':': return &char7x5Scolon;
 		case '-': return &char7x5Sdash;
 		case '.': return &char7x5Speriod;
+		case '#': return &char7x5Spound;
 		case ' ': return &char7x5Sspace;
 		case 'A': return &char7x5Ua;
 		case 'B': return &char7x5Ub;
@@ -150,11 +154,11 @@ void hub75_font_render_str_7x5(char * c, int xp, int yp, uint8_t fr, uint8_t fg,
 	}
 }
 
-void hub75_font_render_int_7x5(int i, int dir, int xp, int xy, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+void hub75_font_render_int_7x5(int i, int dir, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
 	dir = dir ? -6 : 6;
 
 	do {
-		hub75_font_render_7x5('0' + (i % 10), xp, 16, fr, fg, fb, br, bg, bb);
+		hub75_font_render_7x5('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
 		xp += dir;
 		i /= 10;
 	} while (i > 0 && xp >= 0 && xp < HUB75_WIDTH);
