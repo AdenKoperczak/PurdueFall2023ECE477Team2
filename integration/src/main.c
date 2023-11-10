@@ -120,7 +120,7 @@ void keypad_callback(int key) {
 
 	lastKey = key;
 
-	hub75_font_render_int_7x5(keyCount, 0, 1, 16, 1, 1, 0, 0, 0, 0);
+	//hub75_font_render_int_7x5(keyCount, 0, 1, 16, 1, 1, 0, 0, 0, 0);
 }
 
 void TIM1_BRK_UP_TRG_COM_IRQHandler() {
@@ -177,7 +177,7 @@ int main(void) {
 
 	gameStreakType = Score_Gutter;
 	gameMulti      = 5;
-	gameBallCnt    = 9;
+	gameBallCnt    = 1000;
 
 	pos = 0;
 	wscolor = 1;
@@ -189,6 +189,7 @@ int main(void) {
 	hub75_init(30);
 	sound_init();
 	keypad_init();
+	sensors_init();
 
 
 	// HUB75 initial test.
