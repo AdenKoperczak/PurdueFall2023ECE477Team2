@@ -4,6 +4,8 @@
 #include "HUB75_font.h"
 #include "SoundLib.h"
 #include "keypad.h"
+#include "sensors.h"
+#include "GameLogic.h"
 #include "stm32f0xx.h"
 
 int number;
@@ -21,6 +23,83 @@ const int tones[][2] = {
 
 int keyCount;
 int lastKey;
+
+#define SCORE_X 1
+#define SCORE_Y 5
+
+#define BALL_CNT_X 1
+#define BALL_CNT_Y 13
+
+GameModes gameMode;
+GameState gameState;
+
+uint32_t  gameScore;
+
+uint32_t  gameEndTime;
+uint32_t  gameTime;
+
+ScoreType gameStreakType;
+uint32_t  gameMulti;
+uint32_t  gameBallCnt;
+
+void render_score() {
+	hub75_font_render_int_7x5(gameScore, 0, SCORE_X, SCORE_Y, 1, 1, 1, 0, 0, 0);
+}
+
+void render_ball_count() {
+	hub75_font_render_int_7x5(gameBallCnt, 0, BALL_CNT_X, BALL_CNT_Y, 1, 1, 1, 0, 0, 0);
+}
+
+void score_normal(ScoreType scoreType) {
+	gameBallCnt--;
+	if (gameBallCnt == 0) {
+		gameState = Game_Final_Score;
+	}
+
+	switch (scoreType) {
+	case Score_Gutter:
+		break;
+	case Score_10:
+		gameScore += 10;
+		break;
+	case Score_20:
+		gameScore += 20;
+		break;
+	case Score_30:
+		gameScore += 30;
+		break;
+	case Score_50:
+		gameScore += 50;
+		break;
+	}
+
+	render_ball_count();
+	render_score();
+}
+
+void sensors_scored (ScoreType scoreType) {
+	if (gameState != Game_Playing) {
+		return;
+	}
+	// actual scoring logic
+	switch (gameMode) {
+	case Mode_Normal:
+		score_normal(scoreType);
+		break;
+	case Mode_Time_Attack:
+		//score_time_attack(scoreType);
+		break;
+	case Mode_Streak:
+		//score_streak(scoreType);
+		break;
+	case Mode_Combo:
+		//score_combo(scoreType);
+		break;
+	case Mode_None:
+	default:
+		break;
+	}
+}
 
 void keypad_callback(int key) {
 	switch (key) {
@@ -47,6 +126,8 @@ void keypad_callback(int key) {
 void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
 	TIM1->SR &= ~TIM_SR_UIF;
+
+	gameTime++;
 
 	int color = (number % 7) + 1;
 
@@ -86,6 +167,18 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 }
 
 int main(void) {
+	gameMode       = Mode_Normal;
+	gameState      = Game_Playing;
+
+	gameScore      = 0;
+
+	gameEndTime    = 0;
+	gameTime       = 0;
+
+	gameStreakType = Score_Gutter;
+	gameMulti      = 5;
+	gameBallCnt    = 9;
+
 	pos = 0;
 	wscolor = 1;
 	number = 0;
@@ -113,7 +206,9 @@ int main(void) {
 
 	}
 
-	hub75_font_render_str_7x5("DEADBEEF", 1, 5, 1, 1, 1, 0, 0, 0);
+	//hub75_font_render_str_7x5("DEADBEEF", 1, 5, 1, 1, 1, 0, 0, 0);
+
+	render_score();
 
 	// TIM1 for other updates
 

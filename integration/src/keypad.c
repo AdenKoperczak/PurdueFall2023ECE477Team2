@@ -54,7 +54,7 @@ void TIM16_IRQHandler (void) {
 	int r = (GPIOB->IDR >> 4) & 0xf;
 	//column=8 : col1, column=4 : col2, column=2 : col3, column=1 : col4
 	//r=8 : row1, r=4 : row2, r=2 : row3, r=1 : row4
-	if (r && currentPressed != -1) {
+	if (r != 0 && currentPressed != Keypad_None) {
 		currentPressed = Keypad_Invl;
 	} else {
 		switch (r) {
