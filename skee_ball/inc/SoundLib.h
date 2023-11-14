@@ -22,4 +22,20 @@ void sound_start_for(int len);
 void sound_play(int freq1, int vol1, int freq2, int vol2, SoundMode mode, int len);
 void sound_wait();
 
+/*
+const int tones[][2] = {
+		{277, 350},
+		{311, 415},
+		{330, 392},
+		{261, 311},
+		{350, 440}
+};
+ */
+#define sound_gutter() sound_play(350, SOUND_MAX_VOL, 440, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
+#define sound_10()     sound_play(277, SOUND_MAX_VOL, 359, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
+#define sound_20()     sound_play(311, SOUND_MAX_VOL, 415, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
+#define sound_30()     sound_play(330, SOUND_MAX_VOL, 392, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
+#define sound_50()     sound_play(261, SOUND_MAX_VOL, 211, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
+
+
 #endif

@@ -12,9 +12,10 @@ void hub75_font_render_from_8x6(const Hub75Char8x6 * c, int xp, int yp, uint8_t 
 void hub75_font_render_8x6(char c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
 
 
-const Hub75Char7x5 * hub75_font_get_7x5(char c);
-void hub75_font_render_from_7x5(const Hub75Char7x5 * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
-void hub75_font_render_7x5(char c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
-void hub75_font_render_str_7x5(char * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
-void hub75_font_render_int_7x5(int i, int dir, int xp, int xy, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
+const Hub75Char7x5 * hub75_font_get(char c);
+void hub75_font_render_from(const Hub75Char7x5 * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
+void hub75_font_render(char c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
+void hub75_font_render_str(char * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
+void hub75_font_render_int(int i, int dir, int xp, int xy, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
+void hub75_font_render_int_n(int i, int n, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb);
 #endif

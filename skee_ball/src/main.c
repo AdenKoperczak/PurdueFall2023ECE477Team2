@@ -8,13 +8,7 @@
 #include "GameLogic.h"
 #include "stm32f0xx.h"
 
-const int tones[][2] = {
-		{277, 350},
-		{311, 415},
-		{330, 392},
-		{261, 311},
-		{350, 440}
-};
+
 
 int lastKey;
 
@@ -26,6 +20,10 @@ int lastKey;
 
 #define NORMAL_BALL_COUNT 9
 #define TIME_MAX_TIME (5*60)
+
+#define COMBO_MULTI_DEN 10
+#define COMBO_MULTI_INC 1
+#define COMBO_MULTI_MAX ((int)(COMBO_MULTI_DEN * 2.5))
 
 GameModes gameMode;
 GameState gameState;
@@ -42,20 +40,20 @@ uint32_t  gameBallCnt;
 char timeBuffer[4];
 
 void render_score() {
-	hub75_font_render_int_7x5(gameScore, 0, SCORE_X, SCORE_Y, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_int(gameScore, 0, SCORE_X, SCORE_Y, 1, 1, 1, 0, 0, 0);
 }
 
 void render_ball_count() {
-	hub75_font_render_int_7x5(gameBallCnt, 0, BALL_CNT_X, BALL_CNT_Y, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_int(gameBallCnt, 0, BALL_CNT_X, BALL_CNT_Y, 1, 1, 1, 0, 0, 0);
 }
 
 void render_timer() {
 	int time = (gameEndTime - gameTime) / GAME_SECOND;
 
-	hub75_font_render_7x5('0' + time / 60,         1, 9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_7x5(':',                     7, 9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_7x5('0' + (time % 60) / 10, 13, 9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_7x5('0' + (time % 10),      19, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render('0' + time / 60,         1, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(':',                     7, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render('0' + (time % 60) / 10, 13, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render('0' + (time % 10),      19, 9, 1, 1, 1, 0, 0, 0);
 }
 
 void render_back() {
@@ -68,28 +66,38 @@ void render_back() {
 
 void render_mode_select() {
 	render_back();
-	hub75_font_render_str_7x5("SELECT A", 1,  1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_str_7x5("MODE",     1,  9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_str_7x5("A B C D",  1, 17, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("SELECT A", 1,  1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("MODE",     1,  9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("A B C D",  1, 17, 1, 1, 1, 0, 0, 0);
 }
 
 void render_confirmation() {
 	render_back();
-	hub75_font_render_str_7x5("CONFIRM",   1,  1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_str_7x5("GAME MODE", 1,  9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("CONFIRM",   1,  1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("GAME MODE", 1,  9, 1, 1, 1, 0, 0, 0);
 }
 
 void render_time_input() {
 	render_back();
-	hub75_font_render_7x5(timeBuffer[2],  1, 1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_7x5(':',            7, 1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_7x5(timeBuffer[1], 13, 1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_7x5(timeBuffer[0], 19, 1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(timeBuffer[2],  1, 1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(':',            7, 1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(timeBuffer[1], 13, 1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(timeBuffer[0], 19, 1, 1, 1, 1, 0, 0, 0);
 }
 
 void render_final_score() {
 	render_back();
 	render_score();
+	hub75_font_render_str("GAME OVER", 1,  9, 1, 1, 1, 0, 0, 0);
+}
+
+void render_multi() {
+	int whole = gameMulti / COMBO_MULTI_DEN;
+	int frac  = ((gameMulti * 100) / COMBO_MULTI_DEN) % 100;
+
+	hub75_font_render_int_n(whole, 2,  1, 17, 1, 1, 1, 0, 0, 0);
+	hub75_font_render('.',            13, 17, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_int_n(frac,  2, 19, 17, 1, 1, 1, 0, 0, 0);
 }
 
 int parse_time() {
@@ -141,17 +149,22 @@ void score_normal(ScoreType scoreType) {
 
 	switch (scoreType) {
 	case Score_Gutter:
+		sound_gutter();
 		break;
 	case Score_10:
+		sound_10();
 		gameScore += 10;
 		break;
 	case Score_20:
+		sound_20();
 		gameScore += 20;
 		break;
 	case Score_30:
+		sound_30();
 		gameScore += 30;
 		break;
 	case Score_50:
+		sound_50();
 		gameScore += 50;
 		break;
 	}
@@ -193,6 +206,83 @@ void score_time_attack(ScoreType scoreType) {
 	render_score();
 }
 
+void start_streak() {
+	gameScore = 0;
+
+	render_back();
+	render_score();
+}
+
+void score_streak(ScoreType scoreType) {
+	switch (scoreType) {
+	case Score_Gutter:
+	case Score_10:
+		gameState = Game_Final_Score;
+		break;
+	case Score_20:
+		gameScore += 20;
+		break;
+	case Score_30:
+		gameScore += 30;
+		break;
+	case Score_50:
+		gameScore += 50;
+		break;
+	}
+
+	if (gameState == Game_Final_Score) {
+		render_final_score();
+	} else {
+		render_score();
+	}
+
+}
+
+void start_combo() {
+	gameScore = 0;
+	gameMulti = COMBO_MULTI_DEN;
+	gameStreakType = Score_Gutter;
+	gameEndTime = gameTime + parse_time() * GAME_SECOND;
+
+	render_back();
+	render_score();
+	render_multi();
+	render_timer();
+}
+
+void score_combo(ScoreType scoreType) {
+	if (scoreType == gameStreakType) {
+		gameMulti += COMBO_MULTI_INC;
+		if (gameMulti > COMBO_MULTI_MAX) {
+			gameMulti = COMBO_MULTI_MAX;
+		}
+	} else {
+		gameMulti = COMBO_MULTI_DEN;
+		gameStreakType = scoreType;
+	}
+
+
+	switch (scoreType) {
+	case Score_Gutter:
+		break;
+	case Score_10:
+		gameScore += 10 / COMBO_MULTI_DEN * gameMulti;
+		break;
+	case Score_20:
+		gameScore += 20 / COMBO_MULTI_DEN * gameMulti;
+		break;
+	case Score_30:
+		gameScore += 30 / COMBO_MULTI_DEN * gameMulti;
+		break;
+	case Score_50:
+		gameScore += 50 / COMBO_MULTI_DEN * gameMulti;
+		break;
+	}
+
+	render_score();
+	render_multi();
+}
+
 void sensors_scored (ScoreType scoreType) {
 	if (gameState != Game_Playing) {
 		return;
@@ -206,10 +296,10 @@ void sensors_scored (ScoreType scoreType) {
 		score_time_attack(scoreType);
 		break;
 	case Mode_Streak:
-		//score_streak(scoreType);
+		score_streak(scoreType);
 		break;
 	case Mode_Combo:
-		//score_combo(scoreType);
+		score_combo(scoreType);
 		break;
 	case Mode_None:
 	default:
@@ -260,11 +350,11 @@ void keypad_callback(int key) {
 				gameState = Game_Inputing;
 				break;
 			case Mode_Streak:
-				render_back();
-				render_score();
+				start_streak();
 				gameState = Game_Playing;
 				break;
 			case Mode_Combo:
+				render_time_input();
 				gameState = Game_Inputing;
 				break;
 			default:
@@ -298,7 +388,17 @@ void keypad_callback(int key) {
 			break;
 		case '#':
 			if (parse_time() > 0) {
-				start_time_attack();
+				switch (gameMode) {
+				case Mode_Time_Attack:
+					start_time_attack();
+					break;
+				case Mode_Combo:
+					start_combo();
+					break;
+				default:
+					break;
+				}
+
 				gameState = Game_Playing;
 			}
 			break;
@@ -323,8 +423,7 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
 	gameTime++;
 
-	if (gameMode == Mode_Time_Attack && gameState == Game_Playing) {
-		// TODO render timer
+	if ((gameMode == Mode_Time_Attack || gameMode == Mode_Combo) && gameState == Game_Playing) {
 		render_timer();
 
 		if (gameTime == gameEndTime) {

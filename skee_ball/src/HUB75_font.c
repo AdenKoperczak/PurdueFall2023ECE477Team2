@@ -79,7 +79,7 @@ const Hub75Char7x5 char7x5Ux = {0x11, 0x11, 0x0a, 0x04, 0x0a, 0x11, 0x11};
 const Hub75Char7x5 char7x5Uy = {0x11, 0x11, 0x0a, 0x0a, 0x04, 0x04, 0x04};
 const Hub75Char7x5 char7x5Uz = {0x1f, 0x01, 0x02, 0x04, 0x08, 0x10, 0x1f};
 
-const Hub75Char7x5 * hub75_font_get_7x5(char c) {
+const Hub75Char7x5 * hub75_font_get(char c) {
 
 	switch (c) {
 		case '0': return &char7x5N0;
@@ -130,7 +130,7 @@ const Hub75Char7x5 * hub75_font_get_7x5(char c) {
 	return &char7x5Sspace;
 }
 
-void hub75_font_render_from_7x5(const Hub75Char7x5 * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+void hub75_font_render_from(const Hub75Char7x5 * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
 	for (int x = 0; x < 5; x++) {
 		for (int y = 0; y < 7; y++) {
 			if ((*c)[y] & (1 << (4 - x))) {
@@ -142,19 +142,19 @@ void hub75_font_render_from_7x5(const Hub75Char7x5 * c, int xp, int yp, uint8_t 
 	}
 }
 
-void hub75_font_render_7x5(char c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
-	hub75_font_render_from_7x5(hub75_font_get_7x5(c), xp, yp, fr, fg, fb, br, bg, bb);
+void hub75_font_render(char c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+	hub75_font_render_from(hub75_font_get(c), xp, yp, fr, fg, fb, br, bg, bb);
 }
 
-void hub75_font_render_str_7x5(char * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+void hub75_font_render_str(char * c, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
 	while (*c != '\0') {
-		hub75_font_render_7x5(*c, xp, yp, fr, fg, fb, br, bg, bb);
+		hub75_font_render(*c, xp, yp, fr, fg, fb, br, bg, bb);
 		c++;
 		xp += 6;
 	}
 }
 
-void hub75_font_render_int_7x5(int i, int dir, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+void hub75_font_render_int(int i, int dir, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
 	if (!dir) {
 		int iCopy = i;
 		int n = -1;
@@ -167,18 +167,18 @@ void hub75_font_render_int_7x5(int i, int dir, int xp, int yp, uint8_t fr, uint8
 	}
 
 	do {
-		hub75_font_render_7x5('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
+		hub75_font_render('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
 		xp -= 6;
 		i /= 10;
 	} while (i > 0 && xp >= 0 && xp < HUB75_WIDTH);
 }
 
-void hub75_font_render_int_n_7x5(int i, int n, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
+void hub75_font_render_int_n(int i, int n, int xp, int yp, uint8_t fr, uint8_t fg, uint8_t fb, uint8_t br, uint8_t bg, uint8_t bb) {
 
-	xp += 6 *n;
+	xp += 6 * (n - 1);
 
 	for (;n > 0; n--) {
-		hub75_font_render_7x5('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
+		hub75_font_render('0' + (i % 10), xp, yp, fr, fg, fb, br, bg, bb);
 		xp -= 6;
 		i /= 10;
 	}
