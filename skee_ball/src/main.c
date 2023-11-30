@@ -6,24 +6,26 @@
 #include "keypad.h"
 #include "sensors.h"
 #include "GameLogic.h"
+#include "colors.h"
 #include "stm32f0xx.h"
 
-
-
 int lastKey;
-
-#define SCORE_X 1
-#define SCORE_Y 1
-
-#define BALL_CNT_X 1
-#define BALL_CNT_Y 9
+int doSound;
 
 #define NORMAL_BALL_COUNT 9
 #define TIME_MAX_TIME (5*60)
+#define MAX_SCORE 99999
 
-#define COMBO_MULTI_DEN 10
+#define COMBO_MULTI_DEN 2
 #define COMBO_MULTI_INC 1
-#define COMBO_MULTI_MAX ((int)(COMBO_MULTI_DEN * 2.5))
+#define COMBO_MULTI_MAX ((int)(COMBO_MULTI_DEN * 5))
+
+
+const uint8_t multi_colors[][3] = {
+		{1, 0, 0},
+		{1, 1, 0},
+		{0, 1, 0}
+};
 
 GameModes gameMode;
 GameState gameState;
@@ -40,20 +42,31 @@ uint32_t  gameBallCnt;
 char timeBuffer[4];
 
 void render_score() {
-	hub75_font_render_int(gameScore, 0, SCORE_X, SCORE_Y, 1, 1, 1, 0, 0, 0);
+	if (gameScore > MAX_SCORE) {
+		gameScore = MAX_SCORE;
+	}
+	hub75_font_render_str("SCORE", 1, 1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_int(gameScore, 0, 34, 1, SCORE_COLOR, 0, 0, 0);
 }
 
 void render_ball_count() {
-	hub75_font_render_int(gameBallCnt, 0, BALL_CNT_X, BALL_CNT_Y, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("BALLS", 1, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_int(gameBallCnt, 0, 34, 9, BALL_COUNT_COLOR, 0, 0, 0);
 }
 
 void render_timer() {
 	int time = (gameEndTime - gameTime) / GAME_SECOND;
 
-	hub75_font_render('0' + time / 60,         1, 9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render(':',                     7, 9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render('0' + (time % 60) / 10, 13, 9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render('0' + (time % 10),      19, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render('0' + time / 60,         1, 9, TIMER_COLOR, 0, 0, 0);
+	hub75_font_render(':',                     6, 9, TIMER_COLOR, 0, 0, 0);
+	hub75_font_render('0' + (time % 60) / 10, 11, 9, TIMER_COLOR, 0, 0, 0);
+	hub75_font_render('0' + (time % 10),      17, 9, TIMER_COLOR, 0, 0, 0);
+
+	if (time <= TIMER_FAST_FLASH) {
+		lights_set_mode(L_Mode_Fast_Flash, TIMER_FAST_FLASH_COLOR);
+	} else if (time <= TIMER_SLOW_FLASH) {
+		lights_set_mode(L_Mode_Slow_Flash, TIMER_SLOW_FLASH_COLOR);
+	}
 }
 
 void render_back() {
@@ -68,36 +81,107 @@ void render_mode_select() {
 	render_back();
 	hub75_font_render_str("SELECT A", 1,  1, 1, 1, 1, 0, 0, 0);
 	hub75_font_render_str("MODE",     1,  9, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_str("A B C D",  1, 17, 1, 1, 1, 0, 0, 0);
+	hub75_font_render('A',  1, 17, MODE_NORMAL_COLOR,      0, 0, 0);
+	hub75_font_render('B', 10, 17, MODE_TIME_ATTACK_COLOR, 0, 0, 0);
+	hub75_font_render('C', 19, 17, MODE_STREAK_COLOR,      0, 0, 0);
+	hub75_font_render('D', 28, 17, MODE_COMBO_COLOR,       0, 0, 0);
+
+	if (!doSound) {
+		hub75_font_render('N', 58, 23, 1, 1, 1, 0, 0, 0);
+	}
+
+	lights_set_mode(L_Mode_Select, 0, 0, 0);
 }
 
 void render_confirmation() {
 	render_back();
-	hub75_font_render_str("CONFIRM",   1,  1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_str("GAME MODE", 1,  9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("PLAY", 1, 1, 1, 1, 1, 0, 0, 0);
+	switch (gameMode) {
+	case Mode_Normal:
+		hub75_font_render_str("NORMAL", 1, 9, MODE_NORMAL_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Solid, MODE_NORMAL_COLOR);
+		break;
+	case Mode_Time_Attack:
+		hub75_font_render_str("TIME",    1, 9, MODE_TIME_ATTACK_COLOR, 0, 0, 0);
+		hub75_font_render_str("ATTACK", 28, 9, MODE_TIME_ATTACK_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Solid, MODE_TIME_ATTACK_COLOR);
+		break;
+	case Mode_Streak:
+		hub75_font_render_str("STREAK", 1, 9, MODE_STREAK_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Solid, MODE_STREAK_COLOR);
+		break;
+	case Mode_Combo:
+		hub75_font_render_str("COMBO", 1, 9, MODE_COMBO_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Solid, MODE_COMBO_COLOR);
+		break;
+	default:
+		hub75_font_render_str("INVALID", 1, 9, 1, 1, 1, 0, 0, 0);
+		lights_set_mode(L_Mode_Slow_Flash, 0xff, 0xff, 0xff);
+		break;
+	}
+
+	hub75_font_render_str("MODE", 1, 17, 1, 1, 1, 0, 0, 0);
+
 }
 
 void render_time_input() {
-	render_back();
-	hub75_font_render(timeBuffer[2],  1, 1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render(':',            7, 1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render(timeBuffer[1], 13, 1, 1, 1, 1, 0, 0, 0);
-	hub75_font_render(timeBuffer[0], 19, 1, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("ENTER TIME", 1, 1, 1, 1, 1, 0, 0, 0);
+
+	hub75_font_render(timeBuffer[2],  1, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(':',            6, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(timeBuffer[1], 11, 9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render(timeBuffer[0], 17, 9, 1, 1, 1, 0, 0, 0);
 }
 
 void render_final_score() {
 	render_back();
 	render_score();
-	hub75_font_render_str("GAME OVER", 1,  9, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_str("GAME OVER", 1,  9, GAME_OVER_COLOR, 0, 0, 0);
+
+	lights_set_mode(L_Mode_Slow_Flash, GAME_OVER_COLOR);
 }
 
-void render_multi() {
-	int whole = gameMulti / COMBO_MULTI_DEN;
-	int frac  = ((gameMulti * 100) / COMBO_MULTI_DEN) % 100;
 
-	hub75_font_render_int_n(whole, 2,  1, 17, 1, 1, 1, 0, 0, 0);
-	hub75_font_render('.',            13, 17, 1, 1, 1, 0, 0, 0);
-	hub75_font_render_int_n(frac,  2, 19, 17, 1, 1, 1, 0, 0, 0);
+void render_multi() {
+
+	switch (gameStreakType) {
+	case Score_10:
+		hub75_font_render_str(" 10X", 1, 17, 1, 1, 1, 0, 0, 0);
+		break;
+	case Score_20:
+		hub75_font_render_str(" 20X", 1, 17, 1, 1, 1, 0, 0, 0);
+		break;
+	case Score_30:
+		hub75_font_render_str(" 30X", 1, 17, 1, 1, 1, 0, 0, 0);
+		break;
+	case Score_50:
+		hub75_font_render_str("500X", 1, 17, 1, 1, 1, 0, 0, 0);
+		break;
+	case Score_Gutter:
+		hub75_font_render_str("  0X", 1, 17, 1, 1, 1, 0, 0, 0);
+		break;
+	}
+	int whole = gameMulti / COMBO_MULTI_DEN;
+	int frac  = ((gameMulti * 10) / COMBO_MULTI_DEN) % 10;
+
+
+	hub75_font_render('.',            30, 17, 1, 1, 1, 0, 0, 0); // rendered first because it overlaps
+	hub75_font_render_int_n(whole, 1, 25, 17, 1, 1, 1, 0, 0, 0);
+	hub75_font_render_int_n(frac,  1, 35, 17, 1, 1, 1, 0, 0, 0);
+
+	for (int i = MULTI_BAR_LEFT; i < MULTI_BAR_RIGHT; i++) {
+		if (i * (COMBO_MULTI_MAX - COMBO_MULTI_DEN) < (gameMulti - COMBO_MULTI_DEN) * HUB75_WIDTH) {
+			int index = (i - MULTI_BAR_LEFT) * sizeof(multi_colors) / sizeof(multi_colors[0]) / (MULTI_BAR_RIGHT - MULTI_BAR_LEFT);
+			hub75_set_pixel(i, HUB75_HIEGHT - 2, multi_colors[index][0], multi_colors[index][1], multi_colors[index][2]);
+			hub75_set_pixel(i, HUB75_HIEGHT - 3, multi_colors[index][0], multi_colors[index][1], multi_colors[index][2]);
+		} else {
+			hub75_set_pixel(i, HUB75_HIEGHT - 2, 0, 0, 0);
+			hub75_set_pixel(i, HUB75_HIEGHT - 3, 0, 0, 0);
+		}
+
+		hub75_set_pixel(i, HUB75_HIEGHT - 4, 1, 1, 1);
+		hub75_set_pixel(i, HUB75_HIEGHT - 1, 1, 1, 1);
+	}
 }
 
 int parse_time() {
@@ -139,6 +223,7 @@ void start_normal() {
 	render_back();
 	render_score();
 	render_ball_count();
+	lights_set_mode(L_Mode_Chase, MODE_NORMAL_COLOR);
 }
 
 void score_normal(ScoreType scoreType) {
@@ -165,7 +250,7 @@ void score_normal(ScoreType scoreType) {
 		break;
 	case Score_50:
 		sound_50();
-		gameScore += 50;
+		gameScore += 500;
 		break;
 	}
 
@@ -183,23 +268,29 @@ void start_time_attack() {
 
 	render_back();
 	render_score();
+	lights_set_mode(L_Mode_Chase, MODE_TIME_ATTACK_COLOR);
 }
 
 void score_time_attack(ScoreType scoreType) {
 	switch (scoreType) {
 	case Score_Gutter:
+		sound_gutter();
 		break;
 	case Score_10:
+		sound_10();
 		gameScore += 10;
 		break;
 	case Score_20:
+		sound_20();
 		gameScore += 20;
 		break;
 	case Score_30:
+		sound_30();
 		gameScore += 30;
 		break;
 	case Score_50:
-		gameScore += 50;
+		sound_50();
+		gameScore += 500;
 		break;
 	}
 
@@ -211,22 +302,27 @@ void start_streak() {
 
 	render_back();
 	render_score();
+	lights_set_mode(L_Mode_Chase, MODE_STREAK_COLOR);
 }
 
 void score_streak(ScoreType scoreType) {
 	switch (scoreType) {
 	case Score_Gutter:
 	case Score_10:
+		sound_gutter();
 		gameState = Game_Final_Score;
 		break;
 	case Score_20:
+		sound_20();
 		gameScore += 20;
 		break;
 	case Score_30:
+		sound_30();
 		gameScore += 30;
 		break;
 	case Score_50:
-		gameScore += 50;
+		sound_50();
+		gameScore += 500;
 		break;
 	}
 
@@ -248,10 +344,11 @@ void start_combo() {
 	render_score();
 	render_multi();
 	render_timer();
+	lights_set_mode(L_Mode_Chase, MODE_COMBO_COLOR);
 }
 
 void score_combo(ScoreType scoreType) {
-	if (scoreType == gameStreakType) {
+	if (scoreType == gameStreakType && scoreType != Score_Gutter) {
 		gameMulti += COMBO_MULTI_INC;
 		if (gameMulti > COMBO_MULTI_MAX) {
 			gameMulti = COMBO_MULTI_MAX;
@@ -264,18 +361,23 @@ void score_combo(ScoreType scoreType) {
 
 	switch (scoreType) {
 	case Score_Gutter:
+		sound_gutter();
 		break;
 	case Score_10:
+		sound_10();
 		gameScore += 10 / COMBO_MULTI_DEN * gameMulti;
 		break;
 	case Score_20:
+		sound_20();
 		gameScore += 20 / COMBO_MULTI_DEN * gameMulti;
 		break;
 	case Score_30:
+		sound_30()
 		gameScore += 30 / COMBO_MULTI_DEN * gameMulti;
 		break;
 	case Score_50:
-		gameScore += 50 / COMBO_MULTI_DEN * gameMulti;
+		sound_50();
+		gameScore += 500 / COMBO_MULTI_DEN * gameMulti;
 		break;
 	}
 
@@ -331,7 +433,13 @@ void keypad_callback(int key) {
 		case 'D':
 			gameMode  = Mode_Combo;
 			break;
+		case '1':
+			doSound ^= 1;
+			render_mode_select();
+			lastKey = key;
+			return;
 		default:
+			lastKey = key;
 			return;
 		}
 		gameState = Game_Mode_Confirm;
@@ -354,6 +462,7 @@ void keypad_callback(int key) {
 				gameState = Game_Playing;
 				break;
 			case Mode_Combo:
+				render_back();
 				render_time_input();
 				gameState = Game_Inputing;
 				break;
@@ -407,6 +516,10 @@ void keypad_callback(int key) {
 		}
 		break;
 	case Game_Playing:
+		if (key == '*') {
+			gameState = Game_Final_Score;
+			render_final_score();
+		}
 		break;
 	case Game_Final_Score:
 		gameState = Game_Mode_Select;
@@ -417,6 +530,10 @@ void keypad_callback(int key) {
 
 	lastKey = key;
 }
+
+
+int lightsPos;
+int lightsColor;
 
 void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 	TIM1->SR &= ~TIM_SR_UIF;
@@ -431,6 +548,8 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 			render_final_score();
 		}
 	}
+
+	lights_tick();
 }
 
 int main(void) {
@@ -446,6 +565,10 @@ int main(void) {
 	gameMulti      = 5;
 	gameBallCnt    = 1000;
 
+	lightsPos  = 0;
+	lightsColor = 1;
+	doSound = 1;
+
 	lastKey  = Keypad_None;
 
 	timeBuffer[0] = '0';
@@ -459,12 +582,14 @@ int main(void) {
 	keypad_init();
 	sensors_init();
 
+	lights_set_mode(L_Mode_Off, 0, 0, 0);
+
 	// TIM1 for game tick
 
 	RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
 	TIM1->DIER  = TIM_DIER_UIE;
-	TIM1->PSC   = 48000 - 1;
-	TIM1->ARR   = 200 - 1;
+	TIM1->PSC   = 48000 / 4 - 1;
+	TIM1->ARR   = 125 - 1;
 	TIM1->CR1 |= TIM_CR1_CEN;
 	NVIC->ISER[0] |= (1 << TIM1_BRK_UP_TRG_COM_IRQn);
 

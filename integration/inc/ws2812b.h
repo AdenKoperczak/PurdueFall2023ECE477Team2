@@ -1,7 +1,7 @@
 #ifndef WS2812B_H
 #define WS2812B_H
 
-#define WS2812B_N_PIXELS     32
+#define WS2812B_N_PIXELS     66
 #define WS2812B_N_BIT_VALUES 64
 
 #define WS2812B_CLOCK_PRE (19 - 1)

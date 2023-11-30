@@ -31,11 +31,11 @@ const int tones[][2] = {
 		{350, 440}
 };
  */
-#define sound_gutter() sound_play(350, SOUND_MAX_VOL, 440, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
-#define sound_10()     sound_play(277, SOUND_MAX_VOL, 359, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
-#define sound_20()     sound_play(311, SOUND_MAX_VOL, 415, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
-#define sound_30()     sound_play(330, SOUND_MAX_VOL, 392, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
-#define sound_50()     sound_play(261, SOUND_MAX_VOL, 211, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND);
+#define sound_gutter() if (doSound) sound_play(350, SOUND_MAX_VOL, 440, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.1);
+#define sound_10()     if (doSound) sound_play(277, SOUND_MAX_VOL, 350, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.1);
+#define sound_20()     if (doSound) sound_play(311, SOUND_MAX_VOL, 415, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.1);
+#define sound_30()     if (doSound) sound_play(330, SOUND_MAX_VOL, 392, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.1);
+#define sound_50()     if (doSound) sound_play(261, SOUND_MAX_VOL, 311, SOUND_MAX_VOL, Sound_Mixed, SOUND_SECOND * 0.1);
 
 
 #endif

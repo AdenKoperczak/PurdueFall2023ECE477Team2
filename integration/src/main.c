@@ -145,7 +145,7 @@ void TIM1_BRK_UP_TRG_COM_IRQHandler() {
 
 	TIM3->SR &= ~TIM_SR_UIF;
 
-	if (pos == 14) {
+	if (pos == 66) {
 		pos = 0;
 		wscolor = wscolor + 1;
 

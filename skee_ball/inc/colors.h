@@ -1,0 +1,18 @@
+#define MODE_NORMAL_COLOR      0x40, 0x00, 0x00
+#define MODE_TIME_ATTACK_COLOR 0x00, 0x40, 0x00
+#define MODE_STREAK_COLOR      0x00, 0x00, 0x40
+#define MODE_COMBO_COLOR       0x20, 0x00, 0x20
+
+#define SCORE_COLOR            0x00, 0x40, 0x40
+#define GAME_OVER_COLOR        0x40, 0x00, 0x00
+#define BALL_COUNT_COLOR	   0x00, 0x40, 0x40
+#define TIMER_COLOR	           0x40, 0x00, 0x40
+
+#define TIMER_SLOW_FLASH_COLOR 0x40, 0x40, 0x00
+#define TIMER_SLOW_FLASH 10
+
+#define TIMER_FAST_FLASH_COLOR 0x40, 0x08, 0x00
+#define TIMER_FAST_FLASH 5
+
+#define MULTI_BAR_LEFT  1
+#define MULTI_BAR_RIGHT HUB75_WIDTH - 1

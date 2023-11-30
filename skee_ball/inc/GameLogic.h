@@ -1,7 +1,7 @@
 #ifndef GAME_LOGIC_H
 #define GAME_LOGIC_H
 
-#define GAME_SECOND 5
+#define GAME_SECOND 32
 
 typedef enum {
     Score_Gutter,
