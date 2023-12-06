@@ -47,6 +47,7 @@ void sensors_init() {
 
     EXTI -> IMR |= (EXTI_IMR_MR8  | EXTI_IMR_MR9  | EXTI_IMR_MR10 | EXTI_IMR_MR11 |
                     EXTI_IMR_MR12 | EXTI_IMR_MR13 | EXTI_IMR_MR14);
+    NVIC_SetPriority(EXTI4_15_IRQn, 3);
     sensors_enable();
 }
 

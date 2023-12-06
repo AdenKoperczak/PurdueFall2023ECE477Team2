@@ -90,6 +90,7 @@ void sound_init(void) {
     TIM6->CR2 |= 0x00000020;
     TIM6->CR1 |= 0x00000001;
     NVIC->ISER[0] |= 1 << TIM6_DAC_IRQn;
+    NVIC_SetPriority(TIM6_DAC_IRQn, 1);
 }
 
 //============================================================================

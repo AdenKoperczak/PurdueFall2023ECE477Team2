@@ -24,7 +24,8 @@ typedef enum {
 	Game_Mode_Confirm,
 	Game_Inputing,
 	Game_Playing,
-	Game_Final_Score
+	Game_Final_Score,
+	Game_Off
 } GameState;
 
 extern GameModes gameMode;

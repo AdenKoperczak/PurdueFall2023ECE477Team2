@@ -11,6 +11,7 @@
 
 int lastKey;
 int doSound;
+int softOff;
 
 #define NORMAL_BALL_COUNT 9
 #define TIME_MAX_TIME (5*60)
@@ -87,7 +88,7 @@ void render_mode_select() {
 	hub75_font_render('D', 28, 17, MODE_COMBO_COLOR,       0, 0, 0);
 
 	if (!doSound) {
-		hub75_font_render('N', 58, 23, 1, 1, 1, 0, 0, 0);
+		hub75_font_render('M', 58, 23, 1, 1, 1, 0, 0, 0);
 	}
 
 	lights_set_mode(L_Mode_Select, 0, 0, 0);
@@ -124,21 +125,49 @@ void render_confirmation() {
 
 }
 
-void render_time_input() {
-	hub75_font_render_str("ENTER TIME", 1, 1, 1, 1, 1, 0, 0, 0);
-
+void render_time_buffer() {
 	hub75_font_render(timeBuffer[2],  1, 9, 1, 1, 1, 0, 0, 0);
 	hub75_font_render(':',            6, 9, 1, 1, 1, 0, 0, 0);
 	hub75_font_render(timeBuffer[1], 11, 9, 1, 1, 1, 0, 0, 0);
 	hub75_font_render(timeBuffer[0], 17, 9, 1, 1, 1, 0, 0, 0);
 }
 
+void render_time_input() {
+	hub75_font_render_str("ENTER TIME", 1, 1, 1, 1, 1, 0, 0, 0);
+
+	render_time_buffer();
+}
+
 void render_final_score() {
 	render_back();
 	render_score();
-	hub75_font_render_str("GAME OVER", 1,  9, GAME_OVER_COLOR, 0, 0, 0);
 
-	lights_set_mode(L_Mode_Slow_Flash, GAME_OVER_COLOR);
+	switch (gameMode) {
+	case Mode_Normal:
+		lights_set_mode(L_Mode_Slow_Flash, MODE_NORMAL_COLOR);
+		hub75_font_render_str("GAME OVER", 1,  9, GAME_OVER_COLOR, 0, 0, 0);
+		break;
+	case Mode_Time_Attack:
+		render_time_buffer();
+		hub75_font_render_str("GAME OVER", 1,  17, GAME_OVER_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Slow_Flash, MODE_TIME_ATTACK_COLOR);
+		break;
+	case Mode_Streak:
+		render_ball_count();
+		hub75_font_render_str("GAME OVER", 1,  17, GAME_OVER_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Slow_Flash, MODE_STREAK_COLOR);
+		break;
+	case Mode_Combo:
+		render_time_buffer();
+		hub75_font_render_str("GAME OVER", 1,  17, GAME_OVER_COLOR, 0, 0, 0);
+		lights_set_mode(L_Mode_Slow_Flash, MODE_COMBO_COLOR);
+		break;
+	default:
+		hub75_font_render_str("INVALID", 1, 17, 1, 1, 1, 0, 0, 0);
+		lights_set_mode(L_Mode_Slow_Flash, GAME_OVER_COLOR);
+		break;
+	}
+
 }
 
 
@@ -155,7 +184,7 @@ void render_multi() {
 		hub75_font_render_str(" 30X", 1, 17, 1, 1, 1, 0, 0, 0);
 		break;
 	case Score_50:
-		hub75_font_render_str("500X", 1, 17, 1, 1, 1, 0, 0, 0);
+		hub75_font_render_str("100X", 1, 17, 1, 1, 1, 0, 0, 0);
 		break;
 	case Score_Gutter:
 		hub75_font_render_str("  0X", 1, 17, 1, 1, 1, 0, 0, 0);
@@ -250,7 +279,7 @@ void score_normal(ScoreType scoreType) {
 		break;
 	case Score_50:
 		sound_50();
-		gameScore += 500;
+		gameScore += 100;
 		break;
 	}
 
@@ -290,7 +319,7 @@ void score_time_attack(ScoreType scoreType) {
 		break;
 	case Score_50:
 		sound_50();
-		gameScore += 500;
+		gameScore += 100;
 		break;
 	}
 
@@ -299,6 +328,7 @@ void score_time_attack(ScoreType scoreType) {
 
 void start_streak() {
 	gameScore = 0;
+	gameBallCnt = 0;
 
 	render_back();
 	render_score();
@@ -322,13 +352,14 @@ void score_streak(ScoreType scoreType) {
 		break;
 	case Score_50:
 		sound_50();
-		gameScore += 500;
+		gameScore += 100;
 		break;
 	}
 
 	if (gameState == Game_Final_Score) {
 		render_final_score();
 	} else {
+		gameBallCnt++;
 		render_score();
 	}
 
@@ -438,6 +469,12 @@ void keypad_callback(int key) {
 			render_mode_select();
 			lastKey = key;
 			return;
+		case '2':
+			render_back();
+			gameState = Game_Off;
+			lights_set_mode(L_Mode_Off, 0, 0, 0);
+			lastKey = key;
+			return;
 		default:
 			lastKey = key;
 			return;
@@ -522,9 +559,36 @@ void keypad_callback(int key) {
 		}
 		break;
 	case Game_Final_Score:
-		gameState = Game_Mode_Select;
-		gameMode  = Mode_None;
+		switch (key) {
+		case '1':
+			switch (gameMode) {
+			case Mode_Normal:
+				start_normal();
+				break;
+			case Mode_Streak:
+				start_streak();
+				break;
+			case Mode_Time_Attack:
+				start_time_attack();
+				break;
+			case Mode_Combo:
+				start_combo();
+				break;
+			default:
+				break;
+			}
+			gameState = Game_Playing;
+			break;
+		default:
+			gameState = Game_Mode_Select;
+			gameMode  = Mode_None;
+			render_mode_select();
+			break;
+		}
+		break;
+	case Game_Off:
 		render_mode_select();
+		gameState = Game_Mode_Select;
 		break;
 	}
 
@@ -563,7 +627,7 @@ int main(void) {
 
 	gameStreakType = Score_Gutter;
 	gameMulti      = 5;
-	gameBallCnt    = 1000;
+	gameBallCnt    = 9;
 
 	lightsPos  = 0;
 	lightsColor = 1;
